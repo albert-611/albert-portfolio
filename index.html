@@ -1,0 +1,1391 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+      <!-- Title -->
+      <title>Albert Smith | Portfolio</title>
+      <!-- Favicon -->
+      <link rel="icon" href="assets/1mb.jpeg" />
+
+      <!-- Tailwind compiled CSS -->
+      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+            rel="stylesheet">
+
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
+      <!-- Material Symbols -->
+      <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+      <!-- Chart.js -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+      <!-- Lucide -->
+      <script src="https://unpkg.com/lucide@latest"></script>
+
+      <style type="text/tailwindcss">
+            @theme {
+        /* Brand */
+        --color-primary: #5b21b6;
+        --color-primary-light: #7c3aed;
+        --color-primary-dark: #4c1d95;
+        --color-primary-extraDark: #1A0836;
+
+        /* Background */
+        --color-background: #0f0720;
+        --color-surface: #1a1038;
+        --color-nav: #130c2d;
+        --color-navdark: #0a0213;
+
+        /* Text */
+        --color-text: #ffffff;
+        --color-text-secondary: #b8b5d1;
+
+        /* Border */
+        --color-border: #2d1b69;
+
+        --font-bebas: 'Bebas Neue', sans-serif;
+      }
+
+      .project-bg{
+            /* Fallback for older browsers */
+    background-color: #0b0f19; 
+    
+    /* Exact translation of your Tailwind tokens: 
+       Starts at top center, fades from a translucent nav color, 
+       through your dark nav color, down to the deep dark hex. */
+    background-image: radial-gradient(
+        circle at top, 
+        var(--nav, rgba(54, 19, 252, 0.4)) 0%, 
+        var(--navdark, #1a1f2c) 50%, 
+        #0b0f19 100-percent
+    )
+      }
+    </style>
+
+      <!-- Preloader Styles -->
+      <style>
+            html.no-scroll,
+            html.no-scroll body {
+                  overflow: hidden;
+                  height: 100%;
+            }
+
+            #preloader {
+                  position: fixed;
+                  inset: 0;
+                  z-index: 9999;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  background: radial-gradient(circle at 50% 40%, #170b33 0%, #0f0720 55%, #0a0213 100%);
+                  font-family: 'Montserrat', sans-serif;
+            }
+
+            #preloader .pl-inner {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 22px;
+            }
+
+            /* Orbiting ring loader */
+            #preloader .pl-ring {
+                  position: relative;
+                  width: 84px;
+                  height: 84px;
+            }
+
+            #preloader .pl-ring .ring {
+                  position: absolute;
+                  inset: 0;
+                  border-radius: 9999px;
+                  border: 2.5px solid transparent;
+            }
+
+            #preloader .pl-ring .ring--outer {
+                  border-top-color: #7c3aed;
+                  border-right-color: rgba(124, 58, 237, 0.25);
+                  animation: pl-spin 1.1s linear infinite;
+            }
+
+            #preloader .pl-ring .ring--inner {
+                  inset: 14px;
+                  border-bottom-color: #a78bfa;
+                  border-left-color: rgba(167, 139, 250, 0.2);
+                  animation: pl-spin-rev 0.85s linear infinite;
+            }
+
+            #preloader .pl-ring .pl-dot {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  width: 7px;
+                  height: 7px;
+                  margin: -3.5px 0 0 -3.5px;
+                  border-radius: 9999px;
+                  background: #ffffff;
+                  box-shadow: 0 0 12px 3px rgba(124, 58, 237, 0.9);
+            }
+
+            @keyframes pl-spin {
+                  to { transform: rotate(360deg); }
+            }
+
+            @keyframes pl-spin-rev {
+                  to { transform: rotate(-360deg); }
+            }
+
+            #preloader .pl-text {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 8px;
+            }
+
+            #preloader .pl-name {
+                  font-family: 'Bebas Neue', sans-serif;
+                  letter-spacing: 0.12em;
+                  font-size: 1.5rem;
+                  color: #ffffff;
+                  text-transform: uppercase;
+            }
+
+            #preloader .pl-name span {
+                  color: #7c3aed;
+            }
+
+            #preloader .pl-bar {
+                  width: 160px;
+                  height: 3px;
+                  border-radius: 9999px;
+                  background: rgba(255, 255, 255, 0.08);
+                  overflow: hidden;
+            }
+
+            #preloader .pl-bar-fill {
+                  height: 100%;
+                  width: 0%;
+                  border-radius: 9999px;
+                  background: linear-gradient(90deg, #4c1d95, #7c3aed, #a78bfa);
+            }
+
+            #preloader .pl-pct {
+                  font-size: 0.7rem;
+                  letter-spacing: 0.2em;
+                  color: #b8b5d1;
+                  text-transform: uppercase;
+            }
+
+            #preloader.pl-hide {
+                  animation: pl-fadeout 0.6s ease forwards;
+                  pointer-events: none;
+            }
+
+            @keyframes pl-fadeout {
+                  to { opacity: 0; visibility: hidden; }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                  #preloader .ring--outer,
+                  #preloader .ring--inner {
+                        animation: none;
+                  }
+            }
+      </style>
+</head>
+
+<body class=" bg-gradient-to-bl from-surface via-background to-navdark">
+
+      <!-- Preloader -->
+      <div id="preloader">
+            <div class="pl-inner">
+                  <div class="pl-ring">
+                        <div class="ring ring--outer"></div>
+                        <div class="ring ring--inner"></div>
+                        <div class="pl-dot"></div>
+                  </div>
+                  <div class="pl-text">
+                        <div class="pl-name">Albert <span>Smith</span></div>
+                        <div class="pl-bar">
+                              <div class="pl-bar-fill" id="pl-bar-fill"></div>
+                        </div>
+                        <div class="pl-pct" id="pl-pct">Loading 0%</div>
+                  </div>
+            </div>
+      </div>
+
+      <!-- Hero Section -->
+      <section id="home" class="w-full min-h-screen relative flex flex-col font-['Montserrat'] overflow-hidden">
+
+            <!-- 1. Header overlay (Top Layer) -->
+            <header id="home" class="absolute top-3 left-0 right-0 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 z-20">
+                  <nav
+                        class="h-16 bg-navdark/90 backdrop-blur-md rounded-xl border-2 border-zinc-700/40 flex items-center justify-between px-6">
+                        <!-- logo -->
+                        <div class="logo text-white text-xs sm:text-sm font-semibold flex items-center gap-2">
+                              <div class="w-2 h-2 bg-primary-light rounded-full"></div>
+                              <h1>Albert <span class="text-primary">Smith</span></h1>
+                        </div>
+                        <!-- Nav links -->
+                        <ul class="nav-links text-text-secondary sm:text-sm hidden sm:flex gap-3 lg:gap-7">
+                              <li><a href="#home" class="hover:text-primary-light transition">Home</a></li>
+                              <li><a href="#about" class="hover:text-primary-light transition">About</a></li>
+                              <li><a href="#project" class="hover:text-primary-light transition">Projects</a></li>
+                              <li><a href="#service" class="hover:text-primary-light transition">Services</a></li>
+                              <li><a href="#contact" class="hover:text-primary-light transition">Contact</a></li>
+                        </ul>
+                        <!-- hireme button -->
+                        <button
+                              class="bg-primary-dark text-xs p-1 px-2 sm:p-2 sm:px-4 sm:text-sm text-white rounded-2xl cursor-pointer hover:bg-primary transition"><a
+                                    href="#contact">Hire
+                                    Me</a>
+                        </button>
+                  </nav>
+            </header>
+
+            <!-- 2. Base Layer: Fullscreen Paper Texture -->
+            <div class="absolute inset-0 z-2">
+                  <img src="assets/paper.png" alt="Paper texture" class="w-full h-full object-cover opacity-40">
+            </div>
+
+            </div>
+
+            <!-- 3. Mid Layer: Character/Graphic Background (Small Constant Size, Locked to Bottom) -->
+            <div
+                  class="absolute bottom-[-10px] left-1/2 -translate-x-1/2 z-5 pointer-events-none w-[580px] h-[580px] flex items-end justify-center overflow-hidden">
+                  <img src="assets/mybgglow.png" alt="Background Graphic"
+                        class="profile-bg-glow w-full h-full object-cover">
+            </div>
+
+            <div
+                  class="absolute bottom-0 left-1/2 -translate-x-1/2 z-3 pointer-events-none w-full h-full flex items-end justify-center overflow-hidden">
+
+
+                  <!-- 1. Deep Background Soft Ambient Purple -->
+                  <div
+                        class="glow-bg-soft absolute bottom-[-150px] w-[500px] h-[400px] bg-primary-light/20 rounded-full blur-[120px]">
+                  </div>
+
+                  <!-- 2. Mid-Core Intense Violet Glow -->
+                  <div
+                        class="glow-core-mid absolute bottom-[-80px] w-[350px] h-[250px] bg-primary/50 rounded-full blur-[60px]">
+                  </div>
+
+                  <!-- 3. Hotspot Bright Center -->
+                  <div
+                        class="glow-hotspot absolute bottom-[-30px] w-[200px] h-[100px] bg-white/20 rounded-full blur-[30px]">
+                  </div>
+
+
+            </div>
+
+            <div
+                  class="relative z-15 flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12 pt-24 pb-12">
+
+                  <!-- Left: Text content block -->
+                  <div class="text-white w-full max-w-sm flex flex-col gap-2">
+                        <p class="text-primary-light font-semibold tracking-wide text-sm sm:text-base">Hi, I'm Albert
+                              Smith Bala</p>
+
+                        <div class="flex flex-col">
+                              <h2
+                                    class="font-bebas text-6xl sm:text-8xl uppercase font-bold tracking-wide leading-[0.85]">
+                                    Software
+                              </h2>
+                              <h2
+                                    class="font-bebas text-6xl sm:text-8xl uppercase font-bold tracking-wide leading-[0.85] text-primary-light">
+                                    Engineer
+                              </h2>
+                        </div>
+
+                        <p class="text-text-secondary leading-relaxed text-sm sm:text-base ">
+                              I build scalable web applications with clean code and great user Experiences
+                        </p>
+
+                        <div class="flex gap-4 mt-4">
+                              <button id="view-project"
+                                    class="bg-primary hover:bg-primary-light transition-colors duration-300 font-medium  p-2 rounded-xl px-6 shadow-lg shadow-primary/20 cursor-pointer">
+                                    <a href="#project">View Projects</a>
+                              </button>
+                              <button id="contact-me"
+                                    class="border-2 border-border hover:border-primary-light hover:bg-surface/40 transition-all duration-300 font-medium p-2 rounded-xl px-6 cursor-pointer text-text-secondary hover:text-white">
+                                    <a href="#contact">Contact Me</a>
+                              </button>
+                        </div>
+
+                        <div class="social flex gap-4 w-full ml-8 mt-2">
+
+    <!-- GitHub -->
+    <a href="https://github.com/albert-611"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub">
+        <i class="fa-brands fa-github text-xl hover:scale-110 transition-all duration-300 text-white/50 hover:text-primary"></i>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/albert-smith-bala/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin text-xl hover:scale-110 transition-all duration-300 text-white/50 hover:text-primary"></i>
+    </a>
+
+    <!-- YouTube -->
+    <a href="https://www.youtube.com/@AlbertCoding158"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="YouTube">
+        <i class="fa-brands fa-youtube text-xl hover:scale-110 transition-all duration-300 text-white/50 hover:text-primary"></i>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:albertsmithbala@gmail.com"
+        aria-label="Email">
+        <i class="fa-solid fa-envelope text-xl hover:scale-110 transition-all duration-300 text-white/50 hover:text-primary"></i>
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/8801640395297"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp text-xl hover:scale-110 transition-all duration-300 text-white/50 hover:text-primary"></i>
+    </a>
+
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/al.be.rt.895779"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Facebook">
+        <i class="fa-brands fa-facebook-f text-xl hover:scale-110 transition-all duration-300 text-white/50 hover:text-primary"></i>
+    </a>
+
+</div>
+                  </div>
+
+
+                  <!-- Right: Interactive Showcase Card (Landscape-ready on Mobile, Vertical on Desktop) -->
+                  <div
+                        class="w-full max-w-[450px] lg:max-w-[300px] bg-surface/60 backdrop-blur-md rounded-2xl border-2 border-border p-5 sm:p-6 flex flex-row lg:flex-col justify-between gap-4 sm:gap-6 shadow-2xl relative overflow-hidden group">
+                        <div
+                              class="absolute -inset-px bg-radial from-primary-light/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                        </div>
+                        <div class="experience">
+                              <div class="flex items-center gap-4">
+                                    <div
+                                          class="w-12 h-12 rounded-xl bg-navdark border border-border flex items-center justify-center">
+                                          <i data-lucide="star" class="w-6 h-6 text-primary-light"></i>
+                                    </div>
+
+                                    <div>
+                                          <h3 class="text-white font-semibold">Experience</h3>
+                                          <p class="text-text-secondary text-xs sm:text-sm">1+ Years</p>
+                                    </div>
+                              </div>
+                        </div>
+                        <div class="project">
+                              <div class="flex items-center gap-4">
+                                    <div
+                                          class="w-12 h-12 rounded-xl bg-navdark border border-border flex items-center justify-center">
+                                          <i data-lucide="code-xml" class="w-6 h-6 text-primary-light"></i>
+                                    </div>
+
+                                    <div>
+                                          <h3 class="text-white font-semibold ">Project</h3>
+                                          <p class="text-text-secondary text-xs sm:text-sm">3+ Completed</p>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+
+            </div>
+      </section>
+
+      <!-- About Me -->
+      <section id="about"
+            class="w-full h-auto xl:min-h-screen grid grid-cols-1 gap-2 px-4 bg-gradient-to-t from-surface via-background to-navdark">
+            <div class="w-full h-auto col-span-1 text-white mt-4 px-2">
+                  <div class="w-full h-auto text-center">
+                        <p class="text-xl text-primary-light about-text "> <span class="text-white">------</span> About
+                              Me <span class="text-white">------</span> </p>
+                        <h1 class="font-bebas text-7xl uppercase about-text ">I'm <span class="text-primary ">Albert
+                                    Smith
+                              </span>Bala</h1>
+                        <p class="uppercase text-text-secondary tracking-[0.3em] font-medium about-text ">Software
+                              Engineer &
+                              Freelancer</p>
+                        <div class="max-w-4xl h-auto mx-auto mt-4">
+                              <p class="text-white/55 about-text ">I'm a passionate software engineer focused on
+                                    building
+                                    responsive, scalable, and high-performance web applications. I enjoy transforming
+                                    ideas into modern digital experiences through clean code, thoughtful design, and
+                                    intuitive user interfaces that are both beautiful and functional. I'm committed to
+                                    continuous learning and creating solutions that deliver exceptional user
+                                    experiences.
+                              </p>
+                        </div>
+                  </div>
+
+                  <!-- Grid Container (Cleaned up and centered background bounds) -->
+                  <div class="relative grid grid-cols-1 gap-6 md:grid-cols-3 max-w-4xl mx-auto px-6 mt-8">
+
+                        <!-- Card 1 -->
+                        <!-- Fixed: Changed w-[400px] to w-full max-w-[400px] mx-auto for perfect mobile centering -->
+                        <div
+                              class="about-card opacity-0 bg-nav border-2 border-primary-light/20 h-[150px] w-full max-w-[400px] md:max-w-none mx-auto rounded-xl flex items-center gap-4 p-5 transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10">
+                              <div class="text-primary"><i class="fa-solid fa-rocket text-4xl"></i></div>
+                              <div class="flex flex-col gap-1 text-left">
+                                    <h3 class="font-semibold text-lg text-white">Clean Code</h3>
+                                    <p class="text-white/60 text-sm leading-relaxed">Writing maintainable and efficient
+                                          code</p>
+                              </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div
+                              class="about-card opacity-0 bg-nav border-2 border-primary-light/20 h-[150px] w-full max-w-[400px] md:max-w-none mx-auto rounded-xl flex items-center gap-4 p-5 transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10">
+                              <div class="text-primary"><i class="fa-solid fa-code text-4xl"></i></div>
+                              <div class="flex flex-col gap-1 text-left">
+                                    <h3 class="font-semibold text-lg text-white leading-tight ">Modern Architecture</h3>
+                                    <p class="text-white/60 text-sm leading-relaxed">Building scalable systems</p>
+                              </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div
+                              class="about-card opacity-0 bg-nav border-2 border-primary-light/20 h-[150px] w-full max-w-[400px] md:max-w-none mx-auto rounded-xl flex items-center gap-4 p-5 transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10">
+                              <div class="text-primary"><i class="fa-solid fa-laptop-code text-4xl"></i></div>
+                              <div class="flex flex-col gap-1 text-left">
+                                    <h3 class="font-semibold text-lg text-white">Responsive Design</h3>
+                                    <p class="text-white/60 text-sm leading-relaxed">Intuitive and beautiful user
+                                          interfaces</p>
+                              </div>
+                        </div>
+
+                  </div>
+            </div>
+
+            <!-- FIXED OUTER CONTAINER -->
+            <!-- Changed md:max-h-[130px] to h-auto (or md:h-[130px] if you want to force a strict single-line desktop height) -->
+            <div
+                  class="w-full col-span-1 h-auto bg-nav border-2 border-primary-light/20 rounded-2xl mb-4 p-4 flex flex-col justify-between gap-4 mt-4">
+
+                  <!-- Card Header -->
+                  <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-code text-sm text-primary-light"></i>
+                        <p class="font-semibold text-white text-sm">My Tech Stack</p>
+                  </div>
+
+                  <!-- Inner Flex Container (Keeps your design elements completely identical) -->
+                  <div class="flex flex-wrap md:flex-row justify-center items-center gap-y-4 gap-x-2 text-white">
+
+                        <!-- HTML -->
+                        <div
+                              class="tech-icons flex items-center justify-center gap-2 border-r border-text-secondary/20 w-[140px] md:w-[150px] about-icon">
+                              <div class="tech-bg w-10 h-10">
+                                    <img src="assets/html.png" alt="" class="w-full h-full object-contain">
+                              </div>
+                              <p class="mr-2 text-sm">HTML</p>
+                        </div>
+
+                        <!-- CSS -->
+                        <div
+                              class="tech-icons flex items-center justify-center gap-2 border-r border-text-secondary/20 w-[140px] md:w-[150px] about-icon">
+                              <div class="tech-bg w-10 h-10">
+                                    <img src="assets/css.png" alt="" class="w-full h-full object-contain">
+                              </div>
+                              <p class="mr-2 text-sm">CSS</p>
+                        </div>
+
+                        <!-- JS -->
+                        <div
+                              class="tech-icons flex items-center justify-center gap-2 border-r border-text-secondary/20 w-[140px] md:w-[150px] about-icon">
+                              <div class="tech-bg w-10 h-10">
+                                    <img src="assets/js.png" alt="" class="w-full h-full object-contain">
+                              </div>
+                              <p class="mr-2 text-sm">Java Script</p>
+                        </div>
+
+                        <!-- Tailwind -->
+                        <div
+                              class="tech-icons flex items-center justify-center gap-2 border-r border-text-secondary/20 w-[140px] md:w-[150px] about-icon">
+                              <div class="tech-bg w-10 h-10">
+                                    <img src="assets/tailwind.png" alt="" class="w-full h-full object-contain">
+                              </div>
+                              <p class="mr-2 text-sm">Tailwind Css</p>
+                        </div>
+
+                        <!-- C -->
+                        <div
+                              class="tech-icons flex items-center justify-center gap-2 border-r border-text-secondary/20 w-[140px] md:w-[150px] about-icon">
+                              <div class="tech-bg w-10 h-10">
+                                    <img src="assets/c.png" alt="" class="w-full h-full object-contain">
+                              </div>
+                              <p class="mr-2 text-sm">C</p>
+                        </div>
+
+                        <!-- C++ -->
+                        <div
+                              class="tech-icons flex items-center justify-center gap-2 border-r border-text-secondary/20 w-[140px] md:w-[150px] about-icon">
+                              <div class="tech-bg w-10 h-10">
+                                    <img src="assets/cpp.png" alt="" class="w-full h-full object-contain">
+                              </div>
+                              <p class="mr-2 text-sm">C++</p>
+                        </div>
+
+                        <!-- Last Tech Element -->
+                        <div
+                              class="tech-icons flex items-center justify-center gap-2 w-[140px] md:w-[150px] about-icon">
+                              <div class="tech-bg w-10 h-10">
+                                    <img src="assets/ap.png" alt="" class="w-full h-full object-contain">
+                              </div>
+                              <p class="mr-2 text-sm">Photoshop</p>
+                        </div>
+
+                  </div>
+            </div>
+      </section>
+
+      <!-- projects -->
+      <section id="project" class=" relative  w-full min-h-screen pt-4 flex flex-col gap-6 ">
+            <!-- Title & Subtitle Group -->
+            <div class="w-full text-center">
+                  <p class="anim-subtitle text-xl text-primary-light">
+                        <span class="text-white">------</span> Projects <span class="text-white">------</span>
+                  </p>
+                  <h1 class="anim-title font-bebas text-7xl uppercase text-white mt-2">
+                        My <span class="text-primary">Creative</span> Work
+                  </h1>
+            </div>
+
+            <!-- Button Wrapper -->
+            <div class="w-full flex justify-center mt-6">
+                  <button id="project"
+                        class="anim-btn inline-flex items-center justify-center gap-2 text-center text-white/70 hover:text-white bg-navdark p-2 px-4 border-2 border-primary-light/40 hover:border-primary-light rounded-xl">
+                        <span>View All Projects</span>
+                        <i data-lucide="move-right"></i>
+                  </button>
+            </div>
+
+            <!-- Project Content Area -->
+            <div class="w-full h-auto py-6 px-[5rem] flex flex-wrap gap-8 justify-center z-10">
+
+                  <!-- Card 1 -->
+                  <div class="project-card w-[300px] h-[300px] bg-nav/80 p-2  rounded-lg relative cursor-pointer">
+                        <div class="w-full h-[160px] relative">
+                              <img src="assets/aivora-ai-saas.netlify.app_.png" alt=""
+                                    class="w-full h-full object-contain">
+                              <div
+                                    class="absolute bottom-0 right-0 ml-2 mb-2 p-2 px-3 text-xs text-white bg-primary/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg">
+                                    <p class="font-medium tracking-wide">Frontend</p>
+                              </div>
+                        </div>
+                        <div class="p-2">
+                              <p class="text-white text-sm font-semibold">AIVOR - AI Landing Page</p>
+                              <p class="leading-tight pt-2 text-text-secondary/40 text-xs">AI Landing page with modern
+                                    UI and Responsive Design</p>
+                        </div>
+                        <div class="absolute bottom-2 text-white left-2">
+                              <a href="https://aivora-ai-saas.netlify.app/" target="_blank" rel="noopener noreferrer"
+                                    class="inline-block">
+                                    <button
+                                          class="p-1 px-2 rounded-xl bg-primary text-xs flex items-center gap-1.5 cursor-pointer">
+                                          <i class="fa-brands fa-bilibili text-sm"></i> Live Demo
+                                    </button>
+                              </a>
+                        </div>
+                  </div>
+
+                  <!-- Card 2 -->
+                  <div class="project-card w-[300px] h-[300px] bg-nav/80 p-2  rounded-lg relative cursor-pointer">
+                        <div class="w-full h-[160px] relative">
+                              <img src="assets/workifi.netlify.app_.png" alt="" class="w-full h-full object-contain">
+                              <div
+                                    class="absolute bottom-0 right-0 ml-2 mb-2 p-2 px-3 text-xs text-white bg-primary/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg">
+                                    <p class="font-medium tracking-wide">Frontend</p>
+                              </div>
+                        </div>
+                        <div class="p-2">
+                              <p class="text-white text-sm font-semibold">Workifi - Task Management</p>
+                              <p class="leading-tight pt-2 text-text-secondary/40 text-xs">A collaborative task
+                                    management app with LocalStorage real-time updates and analytics</p>
+                        </div>
+                        <div class="absolute bottom-2 text-white left-2">
+                              <a href="https://workifi.netlify.app/" target="_blank" rel="noopener noreferrer"
+                                    class="inline-block">
+                                    <button
+                                          class="p-1 px-2 rounded-xl bg-primary text-xs flex items-center gap-1.5 cursor-pointer">
+                                          <i class="fa-brands fa-bilibili text-sm"></i> Live Demo
+                                    </button>
+                              </a>
+                        </div>
+                  </div>
+
+                  <!-- Card 3 -->
+                  <div class="project-card w-[300px] h-[300px] bg-nav/80 p-2  rounded-lg relative cursor-pointer ">
+                        <div class="w-full h-[160px] relative">
+                              <img src="assets/madtaste.netlify.app_.png" alt="" class="w-full h-full object-contain">
+                              <div
+                                    class="absolute bottom-0 right-0 ml-2 mb-2 p-2 px-3 text-xs text-white bg-primary/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg">
+                                    <p class="font-medium tracking-wide">Frontend</p>
+                              </div>
+                        </div>
+                        <div class="p-2">
+                              <p class="text-white text-sm font-semibold">Mad Taste - Restaurant</p>
+                              <p class="leading-tight pt-2 text-text-secondary/40 text-xs">Restaurant website with
+                                    online ordering, menu and table reservation</p>
+                        </div>
+                        <div class="absolute bottom-2 text-white left-2">
+                              <a href="https://madtaste.netlify.app/" target="_blank" rel="noopener noreferrer"
+                                    class="inline-block">
+                                    <button
+                                          class="p-1 px-2 rounded-xl bg-primary text-xs flex items-center gap-1.5 cursor-pointer">
+                                          <i class="fa-brands fa-bilibili text-sm"></i> Live Demo
+                                    </button>
+                              </a>
+                        </div>
+                  </div>
+
+
+
+
+
+            </div>
+
+            <div
+                  class="absolute bottom-0 left-1/2 -translate-x-1/2  pointer-events-none w-full h-full flex items-end justify-center overflow-hidden">
+
+
+                  <!-- 1. Deep Background Soft Ambient Purple -->
+                  <div
+                        class="glow-bg-soft absolute bottom-[-150px] w-[500px] h-[400px] bg-primary-light/20 rounded-full blur-[120px]">
+                  </div>
+
+                  <!-- 2. Mid-Core Intense Violet Glow -->
+                  <div
+                        class="glow-core-mid absolute bottom-[-80px] w-[350px] h-[250px] bg-primary/50 rounded-full blur-[60px]">
+                  </div>
+
+                  <!-- 3. Hotspot Bright Center -->
+                  <div
+                        class="glow-hotspot absolute bottom-[-30px] w-[200px] h-[100px] bg-white/20 rounded-full blur-[30px]">
+                  </div>
+
+
+            </div>
+      </section>
+
+      <!-- serives -->
+      <section id="service" class="w-full min-h-screen bg-gradient-to-tl from-surface via-background to-navdark pt-4">
+
+            <div id="services-heading" class="w-full text-center">
+                  <p id="services-subtitle" class="text-xl text-primary-light">
+                        <span class="text-white">------</span>
+                        Services
+                        <span class="text-white">------</span>
+                  </p>
+
+                  <h1 id="services-title" class="font-bebas text-7xl uppercase text-white mt-2">
+                        What I <span class="text-primary">Offer</span>
+                  </h1>
+            </div>
+            <div class="relative max-w-5xl mx-auto px-4 py-12 flex flex-col gap-12 overflow-hidden">
+
+                  <!-- Centered Vertical Spine Line (Hidden on Mobile) -->
+                  <div
+                        class="absolute left-1/2 top-16 bottom-16 w-0.5 bg-gradient-to-b from-primary/80 via-primary-light/40 to-primary/10 -translate-x-1/2 hidden md:block">
+                  </div>
+
+                  <!-- Item 1: Content Left, Number Center -->
+                  <div
+                        class="flex flex-col md:flex-row items-center justify-center relative group w-full md:left-timeline">
+                        <div data-tl-card
+                              class="w-full md:w-[45%] order-2 md:order-1 bg-nav/80 p-6 border border-primary/30 rounded-xl flex gap-5 items-center hover:border-primary/70 hover:shadow-[0_0_20px_rgba(147,51,234,0.15)] transition-all duration-300 md:text-right md:flex-row-reverse">
+                              <div
+                                    class="text-primary text-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fa-solid fa-code"></i>
+                              </div>
+                              <div>
+                                    <h3 class="text-white text-lg font-semibold tracking-wide">Frontend Development</h3>
+                                    <p class="leading-relaxed pt-1 text-white/50 text-xs sm:text-sm">Building modern,
+                                          responsive and interactive websites with clean code.</p>
+                              </div>
+                        </div>
+                        <div data-tl-number
+                              class="z-10 flex items-center justify-center w-10 h-10 rounded-full bg-navdark border-2 border-primary text-primary font-bold shadow-[0_0_15px_rgba(147,51,234,0.3)] group-hover:shadow-[0_0_20px_rgba(147,51,234,0.6)] group-hover:bg-primary group-hover:text-white transition-all duration-300 shrink-0 order-1 md:order-2 my-4 md:my-0 md:mx-4">
+                              1
+                        </div>
+                        <div class="hidden md:block w-[45%] order-3"></div>
+                  </div>
+
+                  <!-- Item 2: Content Right, Number Center -->
+                  <div
+                        class="flex flex-col md:flex-row items-center justify-center relative group w-full md:right-timeline">
+                        <div class="hidden md:block w-[45%] order-1"></div>
+                        <div data-tl-number
+                              class="z-10 flex items-center justify-center w-10 h-10 rounded-full bg-navdark border-2 border-primary text-primary font-bold shadow-[0_0_15px_rgba(147,51,234,0.3)] group-hover:shadow-[0_0_20px_rgba(147,51,234,0.6)] group-hover:bg-primary group-hover:text-white transition-all duration-300 shrink-0 order-1 md:order-2 my-4 md:my-0 md:mx-4">
+                              2
+                        </div>
+                        <div data-tl-card
+                              class="w-full md:w-[45%] order-2 md:order-3 bg-nav/80 p-6 border border-primary/30 rounded-xl flex gap-5 items-center hover:border-primary/70 hover:shadow-[0_0_20px_rgba(147,51,234,0.15)] transition-all duration-300">
+                              <div
+                                    class="text-primary text-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fa-solid fa-laptop-code"></i>
+                              </div>
+                              <div>
+                                    <h3 class="text-white text-lg font-semibold tracking-wide">Responsive Design</h3>
+                                    <p class="leading-relaxed pt-1 text-white/50 text-xs sm:text-sm">Pixel-perfect
+                                          designs that look great on all devices and screen sizes.</p>
+                              </div>
+                        </div>
+                  </div>
+
+                  <!-- Item 3: Content Left, Number Center -->
+                  <div
+                        class="flex flex-col md:flex-row items-center justify-center relative group w-full md:left-timeline">
+                        <div data-tl-card
+                              class="w-full md:w-[45%] order-2 md:order-1 bg-nav/80 p-6 border border-primary/30 rounded-xl flex gap-5 items-center hover:border-primary/70 hover:shadow-[0_0_20px_rgba(147,51,234,0.15)] transition-all duration-300 md:text-right md:flex-row-reverse">
+                              <div
+                                    class="text-primary text-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fa-solid fa-paintbrush"></i>
+                              </div>
+                              <div>
+                                    <h3 class="text-white text-lg font-semibold tracking-wide">UI/UX Implementation</h3>
+                                    <p class="leading-relaxed pt-1 text-white/50 text-xs sm:text-sm">Converting ideas
+                                          and designs into beautiful and user-friendly interfaces.</p>
+                              </div>
+                        </div>
+                        <div data-tl-number
+                              class="z-10 flex items-center justify-center w-10 h-10 rounded-full bg-navdark border-2 border-primary text-primary font-bold shadow-[0_0_15px_rgba(147,51,234,0.3)] group-hover:shadow-[0_0_20px_rgba(147,51,234,0.6)] group-hover:bg-primary group-hover:text-white transition-all duration-300 shrink-0 order-1 md:order-2 my-4 md:my-0 md:mx-4">
+                              3
+                        </div>
+                        <div class="hidden md:block w-[45%] order-3"></div>
+                  </div>
+
+                  <!-- Item 4: Content Right, Number Center -->
+                  <div
+                        class="flex flex-col md:flex-row items-center justify-center relative group w-full md:right-timeline">
+                        <div class="hidden md:block w-[45%] order-1"></div>
+                        <div data-tl-number
+                              class="z-10 flex items-center justify-center w-10 h-10 rounded-full bg-navdark border-2 border-primary text-primary font-bold shadow-[0_0_15px_rgba(147,51,234,0.3)] group-hover:shadow-[0_0_20px_rgba(147,51,234,0.6)] group-hover:bg-primary group-hover:text-white transition-all duration-300 shrink-0 order-1 md:order-2 my-4 md:my-0 md:mx-4">
+                              4
+                        </div>
+                        <div data-tl-card
+                              class="w-full md:w-[45%] order-2 md:order-3 bg-nav/80 p-6 border border-primary/30 rounded-xl flex gap-5 items-center hover:border-primary/70 hover:shadow-[0_0_20px_rgba(147,51,234,0.15)] transition-all duration-300">
+                              <div
+                                    class="text-primary text-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fa-solid fa-rocket"></i>
+                              </div>
+                              <div>
+                                    <h3 class="text-white text-lg font-semibold tracking-wide">Performance Optimization
+                                    </h3>
+                                    <p class="leading-relaxed pt-1 text-white/50 text-xs sm:text-sm">Optimizing websites
+                                          for speed, SEO and best performance.</p>
+                              </div>
+                        </div>
+                  </div>
+
+                  <!-- Item 5: Content Left, Number Center -->
+                  <div
+                        class="flex flex-col md:flex-row items-center justify-center relative group w-full md:left-timeline">
+                        <div data-tl-card
+                              class="w-full md:w-[45%] order-2 md:order-1 bg-nav/80 p-6 border border-primary/30 rounded-xl flex gap-5 items-center hover:border-primary/70 hover:shadow-[0_0_20px_rgba(147,51,234,0.15)] transition-all duration-300 md:text-right md:flex-row-reverse">
+                              <div
+                                    class="text-primary text-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                              </div>
+                              <div>
+                                    <h3 class="text-white text-lg font-semibold tracking-wide">API Integration</h3>
+                                    <p class="leading-relaxed pt-1 text-white/50 text-xs sm:text-sm">Integrating
+                                          third-party APIs and building dynamic web applications.</p>
+                              </div>
+                        </div>
+                        <div data-tl-number
+                              class="z-10 flex items-center justify-center w-10 h-10 rounded-full bg-navdark border-2 border-primary text-primary font-bold shadow-[0_0_15px_rgba(147,51,234,0.3)] group-hover:shadow-[0_0_20px_rgba(147,51,234,0.6)] group-hover:bg-primary group-hover:text-white transition-all duration-300 shrink-0 order-1 md:order-2 my-4 md:my-0 md:mx-4">
+                              5
+                        </div>
+                        <div class="hidden md:block w-[45%] order-3"></div>
+                  </div>
+
+            </div>
+      </section>
+
+      <!-- Contacts -->
+      <section id="contact"
+            class="w-full min-h-screen bg-[#0b0f19] py-16 px-6 md:px-16 flex flex-col justify-between border-t border-primary/10">
+
+            <!-- Main Grid Wrapper -->
+            <div class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-start my-auto">
+
+                  <!-- Left Column: Info Panels -->
+                  <div class="lg:col-span-5 flex flex-col gap-8 opacity-0" id="contact-panel">
+
+                        <div class="font-bebas js-fade-item">
+                              <p class="text-xl text-primary-light tracking-widest">
+                                    <span class="text-white">------</span> Contacts <span
+                                          class="text-white">------</span>
+                              </p>
+                              <h2 class="text-4xl md:text-5xl font-black text-white uppercase mt-2 tracking-wide">
+                                    Let's <span class="text-primary inline-block">Work</span> Together
+                              </h2>
+                        </div>
+
+                        <!-- Info Items Stack -->
+                        <div class="flex flex-col gap-6">
+                              <!-- Email -->
+                              <div class="flex items-center gap-4 group cursor-pointer js-fade-item">
+                                    <div
+                                          class="w-12 h-12 rounded-xl bg-nav/60 border border-primary/20 flex items-center justify-center text-primary shadow-[0_0_15px_rgba(147,51,234,0.1)] group-hover:border-primary group-hover:shadow-[0_0_25px_rgba(147,51,234,0.5)] group-hover:scale-105 group-hover:rotate-3 transition-all duration-300">
+                                          <i class="fa-solid fa-envelope text-lg"></i>
+                                    </div>
+                                    <div>
+                                          <p class="text-white/40 text-xs uppercase tracking-wider font-semibold">Email
+                                          </p>
+                                          <a href="mailto:albertsmithbala@gmail.com"
+                                                class="text-white hover:text-primary text-sm font-medium transition-colors">albertsmithbala@gmail.com</a>
+                                    </div>
+                              </div>
+
+                              <!-- Phone -->
+                              <div class="flex items-center gap-4 group cursor-pointer js-fade-item">
+                                    <div
+                                          class="w-12 h-12 rounded-xl bg-nav/60 border border-primary/20 flex items-center justify-center text-primary shadow-[0_0_15px_rgba(147,51,234,0.1)] group-hover:border-primary group-hover:shadow-[0_0_25px_rgba(147,51,234,0.5)] group-hover:scale-105 group-hover:rotate-3 transition-all duration-300">
+                                          <i class="fa-solid fa-phone text-lg"></i>
+                                    </div>
+                                    <div>
+                                          <p class="text-white/40 text-xs uppercase tracking-wider font-semibold">Phone
+                                          </p>
+                                          <a href="tel:+8801640395297"
+                                                class="text-white hover:text-primary text-sm font-medium transition-colors">+8801640395297</a>
+                                    </div>
+                              </div>
+
+                              <!-- Location -->
+                              <div class="flex items-center gap-4 group cursor-pointer js-fade-item">
+                                    <div
+                                          class="w-12 h-12 rounded-xl bg-nav/60 border border-primary/20 flex items-center justify-center text-primary shadow-[0_0_15px_rgba(147,51,234,0.1)] group-hover:border-primary group-hover:shadow-[0_0_25px_rgba(147,51,234,0.5)] group-hover:scale-105 group-hover:rotate-3 transition-all duration-300">
+                                          <i class="fa-solid fa-location-dot text-lg"></i>
+                                    </div>
+                                    <div>
+                                          <p class="text-white/40 text-xs uppercase tracking-wider font-semibold">
+                                                Location</p>
+                                          <p class="text-white text-sm font-medium">Savar, Dhaka, Bangladesh</p>
+                                    </div>
+                              </div>
+                        </div>
+
+                        <!-- Social Links Stack -->
+                        <div class="flex flex-col gap-3 pt-4 js-fade-item">
+                              <p class="text-white/60 text-sm font-medium flex items-center gap-2">
+                                    <i class="fa-solid fa-share-nodes text-primary"></i> Follow Me
+                              </p>
+                              <div class="flex flex-wrap gap-3">
+
+                                    <!-- GitHub -->
+                                    <a href="https://github.com/albert-611" target="_blank" rel="noopener noreferrer"
+                                          aria-label="GitHub"
+                                          class="w-10 h-10 rounded-xl bg-nav/40 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:border-primary hover:bg-primary/20 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all duration-300">
+                                          <i class="fa-brands fa-github text-lg"></i>
+                                    </a>
+
+                                    <!-- LinkedIn -->
+                                    <a href="https://www.linkedin.com/in/albert-smith-bala/" target="_blank"
+                                          rel="noopener noreferrer" aria-label="LinkedIn"
+                                          class="w-10 h-10 rounded-xl bg-nav/40 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:border-primary hover:bg-primary/20 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all duration-300">
+                                          <i class="fa-brands fa-linkedin-in text-lg"></i>
+                                    </a>
+
+                                    <!-- YouTube -->
+                                    <a href="https://www.youtube.com/@AlbertCoding158" target="_blank"
+                                          rel="noopener noreferrer" aria-label="YouTube"
+                                          class="w-10 h-10 rounded-xl bg-nav/40 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:border-primary hover:bg-primary/20 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all duration-300">
+                                          <i class="fa-brands fa-youtube text-lg"></i>
+                                    </a>
+
+                                    <!-- Email -->
+                                    <a href="mailto:albertsmithbala@gmail.com" aria-label="Email"
+                                          class="w-10 h-10 rounded-xl bg-nav/40 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:border-primary hover:bg-primary/20 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all duration-300">
+                                          <i class="fa-solid fa-envelope text-lg"></i>
+                                    </a>
+
+                                    <!-- WhatsApp -->
+                                    <a href="https://wa.me/8801640395297" target="_blank" rel="noopener noreferrer"
+                                          aria-label="WhatsApp"
+                                          class="w-10 h-10 rounded-xl bg-nav/40 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:border-primary hover:bg-primary/20 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all duration-300">
+                                          <i class="fa-brands fa-whatsapp text-lg"></i>
+                                    </a>
+
+                                    <!-- Facebook -->
+                                    <a href="https://www.facebook.com/al.be.rt.895779" target="_blank"
+                                          rel="noopener noreferrer" aria-label="Facebook"
+                                          class="w-10 h-10 rounded-xl bg-nav/40 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:border-primary hover:bg-primary/20 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all duration-300">
+                                          <i class="fa-brands fa-facebook-f text-lg"></i>
+                                    </a>
+
+                              </div>
+                        </div>
+
+                  </div>
+
+                  <!-- Right Column: Interactive Form Card -->
+                  <div
+                        class="lg:col-span-7 w-full bg-[#111625]/60 border border-white/5 rounded-2xl p-6 md:p-8 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                        <form class="flex flex-col gap-5">
+
+                              <!-- Input Row -->
+                              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                    <div class="flex flex-col gap-1.5">
+                                          <input type="text" placeholder="Your Name" required
+                                                class="w-full bg-[#0b0f19]/80 border border-white/10 focus:border-primary rounded-xl px-4 py-3 text-white text-sm outline-none transition-all duration-300 placeholder:text-white/20 focus:shadow-[0_0_15px_rgba(147,51,234,0.15)]">
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                          <input type="email" placeholder="Your Email" required
+                                                class="w-full bg-[#0b0f19]/80 border border-white/10 focus:border-primary rounded-xl px-4 py-3 text-white text-sm outline-none transition-all duration-300 placeholder:text-white/20 focus:shadow-[0_0_15px_rgba(147,51,234,0.15)]">
+                                    </div>
+                              </div>
+
+                              <!-- Subject Input -->
+                              <div class="flex flex-col gap-1.5">
+                                    <input type="text" placeholder="Subject" required
+                                          class="w-full bg-[#0b0f19]/80 border border-white/10 focus:border-primary rounded-xl px-4 py-3 text-white text-sm outline-none transition-all duration-300 placeholder:text-white/20 focus:shadow-[0_0_15px_rgba(147,51,234,0.15)]">
+                              </div>
+
+                              <!-- Message Input -->
+                              <div class="flex flex-col gap-1.5">
+                                    <textarea placeholder="Your Message" rows="5" required
+                                          class="w-full bg-[#0b0f19]/80 border border-white/10 focus:border-primary rounded-xl px-4 py-3 text-white text-sm outline-none transition-all duration-300 placeholder:text-white/20 resize-none focus:shadow-[0_0_15px_rgba(147,51,234,0.15)]"></textarea>
+                              </div>
+
+                              <!-- Action Button -->
+                              <div>
+                                    <button type="submit"
+                                          class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-white text-sm font-semibold tracking-wide shadow-[0_4px_20px_rgba(147,51,234,0.4)] hover:shadow-[0_4px_25px_rgba(147,51,234,0.7)] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                                          <span>Send Message</span>
+                                          <i class="fa-solid fa-paper-plane text-xs"></i>
+                                    </button>
+                              </div>
+
+                        </form>
+                  </div>
+
+            </div>
+
+            <footer>
+                  <!-- Footer Group Element -->
+                  <div
+                        class="max-w-6xl mx-auto w-full border-t border-white/5 pt-8 mt-16 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
+                        <div>
+                              <h3 class="text-white font-bold text-lg tracking-wide">Albert <span
+                                          class="text-primary">Smith</span></h3>
+                              <p class="text-white/30 text-xs mt-1">&copy; 2026 Albert Smith Bala. All rights reserved.
+                              </p>
+                        </div>
+
+                        <!-- Footer Global Nav Links -->
+                        <div class="flex flex-wrap justify-center gap-6 text-white/60 font-medium">
+                              <a href="#home" class="hover:text-primary transition-colors">Home</a>
+                              <a href="#about" class="hover:text-primary transition-colors">About</a>
+                              <a href="#project" class="hover:text-primary transition-colors">Projects</a>
+                              <a href="#service" class="hover:text-primary transition-colors">Services</a>
+                              <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+                        </div>
+
+                        <!-- Back to Top System Button -->
+                        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                              class="group inline-flex items-center gap-2 text-white/50 hover:text-white text-xs font-semibold tracking-wider uppercase transition-colors">
+                              <span>Back to Top</span>
+                              <span
+                                    class="w-8 h-8 rounded-full bg-nav border border-white/10 flex items-center justify-center text-white group-hover:bg-primary group-hover:border-primary group-hover:shadow-[0_0_15px_rgba(147,51,234,0.5)] transition-all duration-300">
+                                    <i class="fa-solid fa-arrow-up text-xs"></i>
+                              </span>
+                        </button>
+                  </div>
+            </footer>
+
+      </section>
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+      <!-- Preloader Logic -->
+      <script>
+            (function () {
+                  document.documentElement.classList.add('no-scroll');
+
+                  var fill = document.getElementById('pl-bar-fill');
+                  var pct = document.getElementById('pl-pct');
+                  var preloader = document.getElementById('preloader');
+                  var progress = 0;
+                  var pageReady = false;
+
+                  window.addEventListener('load', function () {
+                        pageReady = true;
+                  });
+
+                  function tick() {
+                        // Ease toward 90% while waiting, then snap to 100% once the page has loaded
+                        var target = pageReady ? 100 : 90;
+                        progress += (target - progress) * 0.08 + 0.4;
+                        if (progress > target) progress = target;
+
+                        var shown = Math.min(100, Math.round(progress));
+                        fill.style.width = shown + '%';
+                        pct.textContent = 'Loading ' + shown + '%';
+
+                        if (pageReady && progress >= 99.5) {
+                              fill.style.width = '100%';
+                              pct.textContent = 'Loading 100%';
+                              setTimeout(function () {
+                                    preloader.classList.add('pl-hide');
+                                    document.documentElement.classList.remove('no-scroll');
+                                    setTimeout(function () {
+                                          preloader.remove();
+                                    }, 700);
+                              }, 250);
+                              return;
+                        }
+                        requestAnimationFrame(tick);
+                  }
+
+                  requestAnimationFrame(tick);
+
+                  // Safety net: never let the preloader trap the user for more than 6s
+                  setTimeout(function () {
+                        pageReady = true;
+                  }, 6000);
+            })();
+      </script>
+
+      <script>
+
+
+
+            gsap.timeline({
+                  scrollTrigger: {
+                        trigger: "#services-heading",
+                        start: "top 80%",
+                        toggleActions: "play none none reverse",
+                  },
+            })
+
+                  .from("#services-subtitle", {
+                        y: 40,
+                        opacity: 0,
+                        duration: 0.7,
+                        ease: "power3.out",
+                  })
+
+                  .from("#services-title", {
+                        y: 60,
+                        opacity: 0,
+                        duration: 0.9,
+                        ease: "power4.out",
+                  }, "-=0.35")
+
+                  .from("#offer-word", {
+                        scale: 0,
+                        rotation: -15,
+                        opacity: 0,
+                        duration: 0.5,
+                        ease: "back.out(2)",
+                  }, "-=0.3");
+
+
+            // Register ScrollTrigger plugin
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. Reveal Timeline configured to re-trigger every time it is seen
+            const tl = gsap.timeline({
+                  scrollTrigger: {
+                        trigger: "#contact-panel",
+                        start: "top 85%",      // Triggers when the top of the block hits 85% of viewport height
+                        end: "bottom 15%",     // Mark the exit threshold near the top of the viewport
+
+                        // KEY UPDATE: 
+                        // 1st keyword: Action when scrolling down into view (play)
+                        // 2nd keyword: Action when scrolling down out of view (reverse/reset)
+                        // 3rd keyword: Action when scrolling up back into view (play)
+                        // 4th keyword: Action when scrolling up out of view (reverse/reset)
+                        toggleActions: "play reverse play reverse"
+                  }
+            });
+
+            // Make wrapper parent visible immediately on script load
+            tl.to("#contact-panel", { opacity: 1, duration: 0.1 })
+
+                  // Staggered slide up of content rows
+                  .from(".js-fade-item", {
+                        y: 30,
+                        opacity: 0,
+                        duration: 0.6,
+                        ease: "power3.out",
+                        stagger: 0.12
+                  }, "+=0.05")
+
+                  // Staggered pop-in of social badges
+                  .from(".js-social-item", {
+                        scale: 0.6,
+                        opacity: 0,
+                        duration: 0.4,
+                        ease: "back.out(1.5)",
+                        stagger: 0.04
+                  }, "-=0.3");
+
+
+            // 2. Micro-Interaction: Ultra-smooth rubbery hover effect
+            document.querySelectorAll('.js-social-item').forEach(button => {
+                  button.addEventListener('mouseenter', () => {
+                        gsap.to(button, { y: -6, scale: 1.1, duration: 0.3, ease: "power2.out" });
+                  });
+
+                  button.addEventListener('mouseleave', () => {
+                        gsap.to(button, { y: 0, scale: 1, duration: 0.5, ease: "elastic.out(1, 0.4)" });
+                  });
+            });
+
+            // Ensure script runs after DOM elements load safely
+            document.addEventListener("DOMContentLoaded", () => {
+
+                  // 1. Initial Staggered Entrance Animation
+                  gsap.from(".project-card", {
+                        duration: 0.8,
+                        y: 50,                // Slide up from 50px below
+                        opacity: 0,           // Fade in from transparent
+                        scale: 0.9,           // Subtly scale up from 90% size
+                        stagger: 0.15,        // 0.15 second delay between consecutive cards
+                        ease: "power3.out",   // Smooth decelerating animation curve
+                  });
+
+                  // 2. Interactive Hover Micro-Animations
+                  const cards = document.querySelectorAll(".project-card");
+
+                  cards.forEach((card) => {
+                        // Hover Enter: Lift the card slightly and emphasize shadows
+                        card.addEventListener("mouseenter", () => {
+                              gsap.to(card, {
+                                    y: -10,
+                                    scale: 1.02,
+
+                                    duration: 0.4,
+                                    ease: "power2.out",
+                                    overwrite: "auto"
+                              });
+                        });
+
+                        // Hover Leave: Return smoothly to standard layout position
+                        card.addEventListener("mouseleave", () => {
+                              gsap.to(card, {
+                                    y: 0,
+                                    scale: 1,
+                                    borderColor: "rgba(var(--color-primary), 0.5)",
+                                    boxShadow: "0 0 0 0 rgba(0, 0, 0, 0)",
+                                    duration: 0.4,
+                                    ease: "power2.out",
+                                    overwrite: "auto"
+                              });
+                        });
+                  });
+            });
+            // Register the plugin with GSAP
+            gsap.registerPlugin(ScrollTrigger);
+
+            document.addEventListener("DOMContentLoaded", () => {
+
+                  // ==========================================
+                  // 1. ABOUT SECTION CONTENT REVEALS
+                  // ==========================================
+
+                  // Cards Stagger Reveal
+                  gsap.fromTo(".about-card",
+                        {
+                              opacity: 0,
+                              y: 40
+                        },
+                        {
+                              opacity: 1,
+                              y: 0,
+                              duration: 0.6,
+                              stagger: 0.15,
+                              ease: "power2.out",
+                              scrollTrigger: {
+                                    trigger: ".grid",
+                                    start: "top 45%",
+                                    toggleActions: "play reverse play reverse"
+                              }
+                        }
+                  );
+
+                  // Typography/Texts Stagger Reveal
+                  gsap.fromTo(".about-text",
+                        {
+                              opacity: 0,
+                              y: 40
+                        },
+                        {
+                              opacity: 1,
+                              y: 0,
+                              duration: 0.6,
+                              stagger: 0.15,
+                              ease: "power2.out",
+                              scrollTrigger: {
+                                    trigger: ".grid",
+                                    start: "top 85%",
+                                    toggleActions: "play reverse play reverse"
+                              }
+                        }
+                  );
+
+                  // ==========================================
+                  // 2. TECH ICONS REVEAL & INDEPENDENT FLOATS
+                  // ==========================================
+                  gsap.fromTo(".about-icon",
+                        {
+                              opacity: 0,
+                              y: 40
+                        },
+                        {
+                              opacity: 1,
+                              y: 0,
+                              duration: 0.6,
+                              stagger: 0.15,
+                              ease: "power2.out",
+                              scrollTrigger: {
+                                    trigger: ".grid",
+                                    start: "top 15%",
+                                    toggleActions: "play none none none"
+                              },
+                              onComplete: function () {
+                                    makeItFloat(this.targets());
+                              }
+                        }
+                  );
+
+                  // Helper loop function for dynamic icons wave
+                  function makeItFloat(elements) {
+                        elements.forEach((el, index) => {
+                              gsap.to(el, {
+                                    y: "-=8",
+                                    duration: 1.5 + (index * 0.1),
+                                    yoyo: true,
+                                    repeat: -1,
+                                    ease: "sine.inOut",
+                                    rotation: index % 2 === 0 ? 1.5 : -1.5,
+                              });
+                        });
+                  }
+
+                  // ==========================================
+                  // 3. BACKGROUND GLOW GRAPHIC ULTRASMOOTH FLOAT
+                  // ==========================================
+                  gsap.to(".profile-bg-glow", {
+                        y: "-=10",             // Deep, highly visible vertical travel path
+                        scale: 1.02,           // Micro weight breathing effect
+                        duration: 5,           // Extra long timeline creates a premium weightless vibe
+                        yoyo: true,            // Cycles back automatically
+                        repeat: -1,            // Loops infinitely
+                        ease: "sine.inOut",    // Perfect deceleration curves for gravity physics
+                        transformOrigin: "bottom center" // Safely anchors the floor element asset boundary
+                  });
+
+                  // ==========================================
+                  // 4. AMBIENT LIGHT SOURCE LIQUID LAYER LOOPS
+                  // ==========================================
+
+                  // Deep Soft Purple Backdrop
+                  gsap.to(".glow-bg-soft", {
+                        y: -30,
+                        x: 20,
+                        scaleX: 1.15,
+                        scaleY: 1.05,
+                        duration: 7,
+                        yoyo: true,
+                        repeat: -1,
+                        ease: "sine.inOut"
+                  });
+
+                  // Mid Intense Violet Core Glow
+                  gsap.to(".glow-core-mid", {
+                        y: -20,
+                        x: -25,
+                        scaleX: 0.9,
+                        scaleY: 1.1,
+                        opacity: 0.8,
+                        duration: 5.2,
+                        yoyo: true,
+                        repeat: -1,
+                        ease: "sine.inOut"
+                  });
+
+                  // Tiny Hotspot Bright Source Point
+                  gsap.to(".glow-hotspot", {
+                        scale: 1.25,
+                        opacity: 0.4,
+                        duration: 3.5,
+                        yoyo: true,
+                        repeat: -1,
+                        ease: "sine.inOut"
+                  });
+
+            });
+
+            document.addEventListener("DOMContentLoaded", () => {
+                  // Register the plugin with core GSAP architecture
+                  gsap.registerPlugin(ScrollTrigger);
+
+                  // Create a timeline specifically for this text block
+                  const tl = gsap.timeline({
+                        scrollTrigger: {
+                              trigger: ".anim-title",     // The element that kicks off the animation
+                              start: "top 85%",           // Fires when the top of the title is 85% from the top of the screen
+                              toggleActions: "play reverse play reverse"
+                              // Breakdown of toggleActions:
+                              // 1. Enter viewport -> Play forward
+                              // 2. Leave viewport (scrolling up) -> Reverse back out
+                              // 3. Re-enter viewport (scrolling down) -> Play forward again
+                              // 4. Leave viewport (scrolling down) -> Reverse out
+                        }
+                  });
+
+                  // Orchestrate the staggered animation sequence
+                  tl.from(".anim-subtitle", {
+                        y: -20,
+                        opacity: 0,
+                        duration: 0.4,
+                        ease: "power2.out"
+                  })
+                        .from(".anim-title", {
+                              y: 30,
+                              opacity: 0,
+                              scale: 0.95,
+                              duration: 0.6,
+                              ease: "back.out(1.5)" // Gives a premium subtle "bounce" into position
+                        }, "-=0.2") // Starts 0.2 seconds before the subtitle fully finishes
+                        .from(".anim-btn", {
+                              y: 20,
+                              opacity: 0,
+                              duration: 0.5,
+                              ease: "power2.out"
+                        }, "-=0.3");
+            });
+
+      </script>
+      <script>
+            lucide.createIcons();
+      </script>
+
+</body>
+
+</html>

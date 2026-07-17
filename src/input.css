@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@import "tailwindcss";
+
+@theme {
+  /* Brand */
+  --color-primary: #5B21B6;
+  --color-primary-light: #7C3AED;
+  --color-primary-dark: #4C1D95;
+  --color-primary-extraDark: #1A0836;
+
+  /* Background */
+  --color-background: #0F0720;
+  --color-surface: #1A1038;
+  --color-nav: #130C2D;
+  --color-navdark: #0A0213;
+
+  /* Text */
+  --color-text: #FFFFFF;
+  --color-text-secondary: #B8B5D1;
+
+  /* Border */
+  --color-border: #2D1B69;
+}
+
+.nav{
+    background-color: #0a0213;
+}
