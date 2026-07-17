@@ -1399,7 +1399,7 @@
                   // CONFIG — get a free access key at https://web3forms.com
                   // (enter your email there, no signup required, key arrives instantly)
                   // ==========================================
-                  const WEB3FORMS_ACCESS_KEY = "20abc135-3872-41b1-8568-6b30523091c4";
+                  const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
 
                   // Basic profanity / abusive language filter.
                   // Matches whole words (with simple leetspeak substitutions) so it
@@ -1424,6 +1424,34 @@
                               .replace(/\$/g, "s")
                               .replace(/@/g, "a")
                               .replace(/[^a-z\s]/g, "");
+                  }
+
+                  // Checks whether the email's domain actually has mail servers
+                  // configured (MX records), catching made-up/nonexistent domains
+                  // that pass basic regex format checks (e.g. name@djdhshanto.com).
+                  async function domainCanReceiveMail(email) {
+                        const domain = email.split("@")[1];
+                        if (!domain) return false;
+                        try {
+                              const response = await fetch(
+                                    `https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=MX`
+                              );
+                              const data = await response.json();
+                              // Status 0 = NOERROR. Answer array present = MX records exist.
+                              if (data.Status === 0 && Array.isArray(data.Answer) && data.Answer.length > 0) {
+                                    return true;
+                              }
+                              // Fallback: some domains route mail via A/AAAA records instead of MX
+                              const aResponse = await fetch(
+                                    `https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=A`
+                              );
+                              const aData = await aResponse.json();
+                              return aData.Status === 0 && Array.isArray(aData.Answer) && aData.Answer.length > 0;
+                        } catch (err) {
+                              // If the DNS check itself fails (network hiccup), don't block
+                              // the user over an infrastructure issue — let it through.
+                              return true;
+                        }
                   }
 
                   function containsProfanity(text) {
@@ -1471,9 +1499,33 @@
                               const subject = subjectEl.value.trim();
                               const message = messageEl.value.trim();
 
-                              // Native validation (required fields, valid email format)
+                              // Native validation (required fields, basic email format)
                               if (!form.checkValidity()) {
                                     form.reportValidity();
+                                    return;
+                              }
+
+                              // Stricter email format check (catches things like "a@b"
+                              // or "test@test" that the browser's native check lets through)
+                              const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                              if (!emailPattern.test(email)) {
+                                    showStatus("Please enter a valid email address (e.g. name@example.com).", "error");
+                                    emailEl.focus();
+                                    return;
+                              }
+
+                              // Verify the domain actually exists and can receive mail
+                              // (catches made-up domains like name@djdhshanto.com)
+                              submitBtn.disabled = true;
+                              const originalBtnHTMLPreCheck = submitBtn.innerHTML;
+                              submitBtn.innerHTML = "<span>Checking email...</span>";
+                              const domainOk = await domainCanReceiveMail(email);
+                              submitBtn.disabled = false;
+                              submitBtn.innerHTML = originalBtnHTMLPreCheck;
+
+                              if (!domainOk) {
+                                    showStatus("That email's domain doesn't appear to exist or can't receive mail. Please double-check it.", "error");
+                                    emailEl.focus();
                                     return;
                               }
 
